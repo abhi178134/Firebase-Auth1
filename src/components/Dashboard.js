@@ -1,8 +1,7 @@
 import React, { useState} from "react"
 import { Form, Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
-import { Link, useHistory } from "react-router-dom"
-import firebase from "firebase/app"
+import {  useHistory } from "react-router-dom"
 import "firebase/auth";
 
 // const updateProfile = firebase.updateProfile();
@@ -11,7 +10,7 @@ import "firebase/auth";
 export default function Dashboard() {
   const [error, setError] = useState("")
   const [name,setName] =useState("")
-  const [phone,setPhone] =useState(0)
+  const [phone,setPhone] =useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
@@ -27,9 +26,6 @@ export default function Dashboard() {
     }
   }
 
-  function refreshPage() {
-		window.location.reload(false);
-	}
   async function handleSubmit(e) {
     e.preventDefault()
     try {
@@ -77,19 +73,16 @@ export default function Dashboard() {
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          {console.log(currentUser)}
           <strong>Name:</strong> {currentUser.displayName}
           <br/>
           <strong>Phone:</strong> {currentUser.phoneNumber}
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-            Update Profile
-          </Link>
+          <Button className="w-100" onClick={handleLogout}>
+          Log Out
+        </Button>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
+
       </div>
     </>
   )
