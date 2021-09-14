@@ -50,6 +50,14 @@ export default function Signup() {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
+            {/* <Form.Group id="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" ref={nameRef} required />
+            </Form.Group>
+            <Form.Group id="place">
+              <Form.Label>Place</Form.Label>
+              <Form.Control type="text" ref={placeRef} required />
+            </Form.Group> */}
             <Button disabled={loading} className="w-100" type="submit">
               Sign Up
             </Button>

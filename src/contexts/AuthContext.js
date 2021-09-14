@@ -1,8 +1,23 @@
 import React, { useContext, useState, useEffect } from "react"
-import { auth } from "../firebase"
+import { auth} from "../firebase"
 
 const AuthContext = React.createContext()
 
+// const [name,setName]=useState('');
+// const [place,setPlace]=useState('');
+// addUserDetails = e => {
+//   e.preventDefault();
+//   db.settings({
+//     timestampsInSnapshots: true
+//   });
+//   const userRef = db.collection(“users”).add({
+    
+//   });  
+//   this.setState({
+//     fullname: '',
+//     email: ''
+//   });
+// };
 export function useAuth() {
   return useContext(AuthContext)
 }
