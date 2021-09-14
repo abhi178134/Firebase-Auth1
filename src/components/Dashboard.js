@@ -10,7 +10,6 @@ import "firebase/auth";
 export default function Dashboard() {
   const [error, setError] = useState("")
   const [name,setName] =useState("")
-  const [phone,setPhone] =useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
@@ -31,8 +30,7 @@ export default function Dashboard() {
     try {
       setError("");
       currentUser.updateProfile({
-        displayName: name,
-        phoneNumber: phone
+        displayName: name
       }).then(()=>history.push("/"))
     }catch {
       setError("Failed to update Profile")
@@ -48,12 +46,8 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Add Details</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="Name">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Place of Birth</Form.Label>
               <Form.Control type="text" value={name} onChange ={(e)=>setName(e.target.value)}  required />
-            </Form.Group>
-            <Form.Group id="Phone">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control type="number" value={phone} onChange ={(e)=>setPhone(e.target.value)} required />
             </Form.Group>
             <Button className="w-100" type="submit">
               Add Detail
@@ -73,9 +67,8 @@ export default function Dashboard() {
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <strong>Name:</strong> {currentUser.displayName}
+          <strong>Place of Birth:</strong> {currentUser.displayName}
           <br/>
-          <strong>Phone:</strong> {currentUser.phoneNumber}
           <Button className="w-100" onClick={handleLogout}>
           Log Out
         </Button>
